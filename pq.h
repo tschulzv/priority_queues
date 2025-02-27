@@ -60,22 +60,16 @@ BOOLEAN pq_destroy(PQ* pq);
 
 // FUNCIONES ADICIONALES AGREGADAS -----------
 
-/* Realiza la operación de propagar arriba, 
-retorna TRUE si tuvo exito
-retorna FALSE si tuvo error*/
-BOOLEAN _percolate_up(PQ* pq, int i);
+/* Realiza la operación de propagar arriba*/
+void _percolate_up(PQ* pq, int i);
 
-/* Realiza la operación de propagar abajo,
-retorna TRUE si tuvo exito
-retorna FALSE si tuvo error*/
-BOOLEAN _percolate_down(PQ* pq, int i);
+/* Realiza la operación de propagar abajo*/
+void _percolate_down(PQ* pq, int i);
 
-/* Duplica el tamaño del arreglo de la PQ, copiando sus elementos existentes,
-retorna TRUE si tuvo exito
-retorna FALSE si tuvo error*/
+/* Duplica el tamaño del arreglo de la PQ, copiando sus elementos existentes,*/
 BOOLEAN _double_size(PQ* pq);
 
 /* Imprime un PQ */
-void _print_pq(PQ* pq);
+void print_pq(PQ* pq);
 
 #endif

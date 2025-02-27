@@ -1,15 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
 #include <stdio.h>
 #include "pq.h"
 
 int main(int argc, char* argv[]) {
 
-    /* revisar que se paso el nombre del archivo via parametros */
+    /* --------------------------------------------- descomentar luego !!!!!!!!!
+    //revisar que se paso el nombre del archivo via parametros 
     if (argc != 2) {
         printf("Forma de uso:\n");
         printf("\tProyecto1.exe nombre_de_archivo.txt\n");
         return 1;
     }
+     --------------------------------------------------- */
+    
     /*
     REEMPLACE SU CODIGO AQUI
     deben abrir el archivo, leer cada caracter y guardarlo en una tabla con la cantidad de
@@ -47,7 +51,8 @@ int main(int argc, char* argv[]) {
     https://www.gutenberg.org/cache/epub/10506/pg10506.txt
     */
     // ej. leer el contenido del archivo caracter por caracter:s
-    FILE* f = fopen(argv[1], "r");
+    /* --------------------------------------------- descomentar luego !!!!!!!!!
+    * FILE* f = fopen(argv[1], "r");
     while (1) {
         char c = fgetc(f);
         if (feof(f)) {
@@ -57,6 +62,42 @@ int main(int argc, char* argv[]) {
         printf("%c", c);
     }
     fclose(f);
+    * -----------------------------------------------
+    */
+    
+    // crear la pq
+    PQ* pq = pq_create();
+    // agregar algunos nodos
+    char* valor1 = malloc(sizeof(char));
+    *valor1 = 'A';
+    pq_add(pq, valor1, 3);
+    char* valor2 = malloc(sizeof(char));
+    *valor2 = 'B';
+    pq_add(pq, valor2, 4);
 
+    //imprimir, debería ordenar: c, a
+    print_pq(pq);
+
+
+    char* valor3 = malloc(sizeof(char));
+    *valor3 = 'C';
+    pq_add(pq, valor3, 1);
+
+    //imprimir, debería ordenar: c, a, b
+    print_pq(pq);
+
+    
+    PrioValue pv = NULL;
+    if (pq_remove(pq, (void**)&pv)) {
+        if (pv != NULL) {
+            printf("%c\n", *(char*)(pv->value));
+            free(pv->value); 
+            free(pv);         
+        }
+    } 
+    print_pq(pq);
+
+    pq_destroy(pq);
+    system("PAUSE");
     return 0;
 }
