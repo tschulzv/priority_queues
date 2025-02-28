@@ -9,7 +9,7 @@
 #define BOOLEAN int
 
 /*definición de una constante para la capacidad inicial del Heap*/
-#define INITIAL_CAP 10
+#define INITIAL_CAP 256
 
 /* Implementacion de una cola de prioridades usando un Monticulo (Heap) */
 

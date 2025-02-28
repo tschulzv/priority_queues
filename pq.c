@@ -54,7 +54,7 @@ BOOLEAN pq_add(PQ* pq, void* valor, int prioridad) {
 	pq->size = newIndex;
 	_percolate_up(pq, newIndex);
 	
-	printf("Se agrego valor %c con prioridad %d\n", *(char*)pv->value, prioridad);
+	//printf("Se agrego valor %c con prioridad %d\n", *(char*)pv->value, prioridad);
 	return TRUE;
 }
 
@@ -198,13 +198,23 @@ BOOLEAN _double_size(PQ* pq) {
 }
 
 
-/* Imprime un PQ */
+/* Imprime un PQ de chars, valor = prioridad */
 void print_pq(PQ* pq) {
 	if (pq == NULL) return;
 	printf("\n");
 	// recorrer la pq e imprimir cada valor
 	for (int i = 1; i <= pq->size; i++) {
-		printf("%c|", *(char*)(pq->arr[i]->value));
-	}	
+		// acceder al valor del puntero value como un char
+		char ch = *(char*)(pq->arr[i]->value);
+		if (ch == ' ') {
+			printf("\n espacio = %d", pq->arr[i]->prio);
+		}
+		else if (ch == '\n') {
+			printf("\n newline = %d", pq->arr[i]->prio);
+		}
+		else {
+			printf("\n%c = %d", ch, pq->arr[i]->prio);
+		}
+	}
 }
 
